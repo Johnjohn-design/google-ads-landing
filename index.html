@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Ads — Ліди та продажі за $149</title>
+  <meta name="description" content="Google Ads під ключ: запуск реклами, прозора аналітика, контроль ROI та масштабування бізнесу. Фіксована вартість запуску — $149.">
+  <meta property="og:title" content="Google Ads — Ліди та продажі за $149">
+  <meta property="og:description" content="Налаштування Google Ads під ключ для бізнесу: від стратегії до стабільного потоку заявок.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#4285F4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Facebook Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f7f9fc;
+      --surface-2: #eef3fd;
+      --text: #101828;
+      --muted: #5c667b;
+      --line: #dbe4f5;
+      --blue: #4285F4;
+      --red: #EA4335;
+      --yellow: #FBBC05;
+      --green: #34A853;
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --shadow-soft: 0 20px 45px rgba(66, 133, 244, 0.09);
+      --shadow-card: 0 12px 30px rgba(16, 24, 40, 0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: clip;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x: clip;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    button { border: none; background: none; font-family: inherit; cursor: pointer; }
+    input, textarea { font-family: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(1200px, calc(100% - 2.5rem));
+      margin-inline: auto;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.015;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 280px 280px;
+    }
+
+    #smokey-fluid-cursor {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .site-wrap {
+      position: relative;
+      z-index: 1;
+      isolation: isolate;
+    }
+
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(65px);
+      opacity: 0.22;
+      z-index: -1;
+      pointer-events: none;
+      transition: transform 0.2s linear;
+    }
+    .bg-orb.one { width: 340px; height: 340px; left: -80px; top: 14vh; background: var(--blue); }
+    .bg-orb.two { width: 300px; height: 300px; right: -60px; top: 42vh; background: var(--yellow); }
+    .bg-orb.three { width: 270px; height: 270px; left: 36%; bottom: -80px; background: var(--green); }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: rgba(255, 255, 255, 0.76);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+    .nav.scrolled {
+      border-color: var(--line);
+      box-shadow: 0 8px 24px rgba(16, 24, 40, 0.04);
+    }
+    .nav-inner {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #101828;
+      font-size: 1rem;
+    }
+    .brand-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: conic-gradient(var(--blue), var(--red), var(--yellow), var(--green), var(--blue));
+      box-shadow: 0 0 0 4px #fff, 0 0 0 5px #d7e4fb;
+    }
+    .nav-links {
+      display: flex;
+      gap: 0.35rem;
+      align-items: center;
+    }
+    .nav-link {
+      font-size: 0.9rem;
+      color: var(--muted);
+      padding: 0.58rem 0.9rem;
+      border-radius: 999px;
+      transition: color 0.25s ease, background-color 0.25s ease;
+    }
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--text);
+      background: #edf2ff;
+    }
+    .nav-cta {
+      background: var(--blue);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.92rem;
+      border-radius: 999px;
+      padding: 0.72rem 1.2rem;
+      box-shadow: 0 8px 18px rgba(66, 133, 244, 0.25);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 25px rgba(66, 133, 244, 0.28);
+    }
+
+    .hero {
+      padding: clamp(4.2rem, 8vh, 6rem) 0 clamp(2.8rem, 7vh, 5rem);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: clamp(1.5rem, 4vw, 3rem);
+      align-items: center;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--blue);
+      background: #eaf1ff;
+      border: 1px solid #d7e4fb;
+      border-radius: 999px;
+      padding: 0.42rem 0.84rem;
+      margin-bottom: 1.1rem;
+    }
+    .pill i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 6px rgba(52, 168, 83, 0.15);
+      animation: pulse 2.2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.7; }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 4.8rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      margin-bottom: 1rem;
+      max-width: 12.5ch;
+    }
+    .google-gradient {
+      background: linear-gradient(94deg, var(--blue), var(--red), var(--yellow), var(--green));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      background-size: 180% 180%;
+      animation: hueMove 7s ease infinite;
+    }
+    @keyframes hueMove {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 1.8vw, 1.18rem);
+      color: var(--muted);
+      max-width: 55ch;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+    .btn-main,
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.48rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.96rem;
+      padding: 0.86rem 1.34rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+    .btn-main {
+      background: #1a73e8;
+      color: #fff;
+      box-shadow: 0 10px 20px rgba(26, 115, 232, 0.24);
+    }
+    .btn-main:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(26, 115, 232, 0.3);
+    }
+    .btn-ghost {
+      color: var(--text);
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+    .btn-ghost:hover { background: #f4f7ff; }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.52rem;
+    }
+    .hero-tag {
+      font-size: 0.78rem;
+      color: #455064;
+      background: #fff;
+      border: 1px solid #e3e9f8;
+      border-radius: 999px;
+      padding: 0.36rem 0.7rem;
+    }
+
+    .hero-panel {
+      background: linear-gradient(160deg, #ffffff, #f6f9ff);
+      border: 1px solid #dbe6fb;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 1.15rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: auto -40px -65px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(66, 133, 244, 0.2), transparent 62%);
+      pointer-events: none;
+    }
+    .panel-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      gap: 0.8rem;
+    }
+    .panel-top strong {
+      font-size: 0.94rem;
+      letter-spacing: -0.01em;
+    }
+    .panel-live {
+      font-size: 0.74rem;
+      color: var(--green);
+      background: #effbf2;
+      border: 1px solid #cdeed6;
+      border-radius: 999px;
+      padding: 0.25rem 0.6rem;
+      font-weight: 600;
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.7rem;
+    }
+    .kpi {
+      background: #fff;
+      border: 1px solid #e1e8f7;
+      border-radius: 14px;
+      padding: 0.8rem;
+      box-shadow: 0 8px 16px rgba(16, 24, 40, 0.04);
+    }
+    .kpi .label {
+      font-size: 0.74rem;
+      color: #607089;
+      margin-bottom: 0.32rem;
+    }
+    .kpi .value {
+      font-size: 1.23rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+    .kpi.blue .value { color: var(--blue); }
+    .kpi.red .value { color: var(--red); }
+    .kpi.yellow .value { color: #c68a00; }
+    .kpi.green .value { color: var(--green); }
+
+    .section {
+      padding: clamp(3.8rem, 9vh, 7rem) 0;
+    }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      margin-bottom: 1.6rem;
+    }
+    .section-head h2 {
+      font-size: clamp(1.65rem, 4vw, 2.6rem);
+      letter-spacing: -0.03em;
+      line-height: 1.07;
+      max-width: 17ch;
+    }
+    .section-head p {
+      color: var(--muted);
+      max-width: 42ch;
+      font-size: 0.98rem;
+    }
+
+    .cards-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.85rem;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #e4ebfb;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-card);
+      padding: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 34px rgba(16, 24, 40, 0.12);
+    }
+    .card-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 0.92rem;
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+    }
+    .card h3 {
+      font-size: 1.02rem;
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.02em;
+    }
+    .card p {
+      color: var(--muted);
+      font-size: 0.91rem;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.8rem;
+      counter-reset: step;
+    }
+    .flow-item {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: linear-gradient(160deg, #fff, #f8fbff);
+      padding: 1.1rem;
+      min-height: 180px;
+    }
+    .flow-item::before {
+      counter-increment: step;
+      content: "0" counter(step);
+      font-size: 0.75rem;
+      color: #6a7c99;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      display: inline-block;
+      margin-bottom: 0.62rem;
+    }
+    .flow-item h3 {
+      font-size: 1.02rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.45rem;
+    }
+    .flow-item p {
+      color: var(--muted);
+      font-size: 0.91rem;
+    }
+
+    .pricing {
+      padding: clamp(3.8rem, 9vh, 6.7rem) 0;
+    }
+    .pricing-wrap {
+      background: linear-gradient(150deg, #fff 0%, #f0f6ff 100%);
+      border: 1px solid #d8e5ff;
+      border-radius: 30px;
+      box-shadow: var(--shadow-soft);
+      padding: clamp(1.1rem, 2.7vw, 2.2rem);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      align-items: center;
+    }
+    .price-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 0.37rem 0.68rem;
+      background: #e8f0fe;
+      color: var(--blue);
+      margin-bottom: 0.8rem;
+    }
+    .price-main {
+      font-size: clamp(3.3rem, 9vw, 6.8rem);
+      line-height: 0.9;
+      letter-spacing: -0.06em;
+      margin-bottom: 0.45rem;
+      font-weight: 800;
+    }
+    .price-main span {
+      font-size: 1.25rem;
+      color: #62708a;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-left: 0.35rem;
+    }
+    .pricing p {
+      color: var(--muted);
+      max-width: 43ch;
+    }
+    .price-list {
+      display: grid;
+      gap: 0.55rem;
+      background: #fff;
+      border: 1px solid #e4ecfb;
+      border-radius: 20px;
+      padding: 0.95rem;
+    }
+    .price-li {
+      display: flex;
+      align-items: center;
+      gap: 0.56rem;
+      padding: 0.58rem 0.55rem;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      color: #243045;
+    }
+    .price-li i {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 0.72rem;
+      font-style: normal;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .packages-compare {
+      padding: clamp(3rem, 8vh, 5rem) 0;
+    }
+    .compare-ladder {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.7rem;
+    }
+    .compare-plan {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 1rem;
+      background: #fff;
+    }
+    .compare-plan b {
+      font-size: 1.45rem;
+      letter-spacing: -0.03em;
+    }
+    .compare-plan p {
+      color: var(--muted);
+      font-size: 0.86rem;
+      margin-top: 0.35rem;
+    }
+    .compare-plan .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--blue);
+      background: #eaf1ff;
+      border-radius: 999px;
+      padding: 0.22rem 0.56rem;
+      margin-bottom: 0.55rem;
+    }
+    .compare-plan.active {
+      border-color: #a8c5fb;
+      box-shadow: 0 16px 30px rgba(66, 133, 244, 0.18);
+      transform: translateY(-4px);
+    }
+    .compare-plan .plan-link {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--blue);
+      text-decoration: none;
+      padding: 0.4rem 0.9rem;
+      border: 1.5px solid var(--blue);
+      border-radius: 999px;
+      transition: all 0.25s ease;
+    }
+    .compare-plan .plan-link:hover {
+      background: var(--blue);
+      color: #fff;
+    }
+    .compare-plan.active .plan-link {
+      background: var(--blue);
+      color: #fff;
+    }
+    .compare-plan.active .plan-link:hover {
+      background: #3370d6;
+    }
+
+    .showcase {
+      padding: clamp(4rem, 10vh, 8rem) 0;
+    }
+    .showcase-header {
+      text-align: center;
+      margin-bottom: clamp(2.5rem, 5vh, 4rem);
+    }
+    .showcase-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+    .showcase-subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0.75rem auto 0;
+    }
+    .cases-grid {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(2rem, 4vw, 3rem);
+    }
+    .case-card {
+      background: #fff;
+      border: 1px solid #e1e8f8;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: transform 0.5s cubic-bezier(0.22,1,0.36,1), box-shadow 0.5s ease;
+    }
+    .case-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 64px rgba(66,133,244,0.10), 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .case-inner {
+      display: flex;
+      flex-direction: column;
+    }
+    .case-img {
+      position: relative;
+      overflow: hidden;
+      background: #f8fafd;
+      border-bottom: 1px solid #e1e8f8;
+    }
+    .case-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.22,1,0.36,1);
+    }
+    .case-card:hover .case-img img {
+      transform: scale(1.02);
+    }
+    .case-niche {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--dark);
+      letter-spacing: 0.02em;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .case-body {
+      padding: clamp(1.25rem, 3vw, 2rem) clamp(1.25rem, 3vw, 2rem);
+    }
+    .case-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .case-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .case-brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #fff;
+    }
+    .case-brand-name {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
+    }
+    .case-result {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--green);
+      font-weight: 600;
+      padding: 0.4rem 0.75rem;
+      background: rgba(52,168,83,0.07);
+      border-radius: 10px;
+    }
+    .case-result svg { flex-shrink: 0; }
+    .case-desc {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+      margin-bottom: 1.25rem;
+      max-width: 720px;
+    }
+    .case-kpis {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.6rem;
+    }
+    .case-kpi {
+      background: #f4f7fc;
+      border-radius: 12px;
+      padding: 0.75rem 0.5rem;
+      text-align: center;
+    }
+    .case-kpi-val {
+      display: block;
+      font-size: clamp(1.15rem, 2vw, 1.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .case-kpi-label {
+      font-size: 0.68rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 0.2rem;
+      display: block;
+    }
+    .case-kpi-val.blue { color: var(--blue); }
+    .case-kpi-val.green { color: var(--green); }
+    .case-kpi-val.red { color: var(--red); }
+    .case-kpi-val.yellow { color: #e8a600; }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+    }
+    .faq {
+      background: #fff;
+      border: 1px solid #e1e8f8;
+      border-radius: var(--radius-md);
+      padding: 0.95rem 1rem;
+    }
+    .faq b {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+    }
+    .faq p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .contact {
+      padding: clamp(4rem, 10vh, 7rem) 0;
+    }
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+    .contact-box,
+    .contact-form {
+      background: #fff;
+      border: 1px solid #dfe8fb;
+      border-radius: 24px;
+      box-shadow: var(--shadow-card);
+      padding: clamp(1rem, 3vw, 1.6rem);
+    }
+    .contact-box h2 {
+      font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin-bottom: 0.7rem;
+    }
+    .contact-box p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+      max-width: 34ch;
+    }
+    .messengers {
+      display: flex;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+    .messenger-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-radius: 999px;
+      padding: 0.72rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1px solid #d9e3f8;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .messenger-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 18px rgba(16, 24, 40, 0.1);
+    }
+    .messenger-wa { background: #f0fff4; color: #1f8b4f; }
+    .messenger-tg { background: #f0f8ff; color: #0a77b8; }
+    .messenger-btn svg { width: 18px; height: 18px; }
+
+    .form-group { margin-bottom: 0.8rem; }
+    .form-label {
+      display: block;
+      margin-bottom: 0.32rem;
+      font-size: 0.82rem;
+      color: #5f6f8b;
+      font-weight: 500;
+    }
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      border: 1px solid #d7e3fb;
+      border-radius: 12px;
+      background: #fdfefe;
+      padding: 0.8rem 0.88rem;
+      font-size: 0.96rem;
+      color: #0f1f36;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.14);
+    }
+    .form-textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    .form-submit {
+      width: 100%;
+      border-radius: 12px;
+      padding: 0.88rem 1rem;
+      color: #fff;
+      font-size: 0.98rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--blue), #1a73e8);
+      box-shadow: 0 10px 18px rgba(66, 133, 244, 0.26);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px rgba(66, 133, 244, 0.3);
+    }
+    .form-note {
+      text-align: center;
+      margin-top: 0.6rem;
+      color: #6a7890;
+      font-size: 0.79rem;
+    }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 1.8rem 1rem;
+    }
+    .form-success.active { display: block; }
+    .form-success-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      margin-inline: auto;
+      background: #eef5ff;
+      color: var(--blue);
+      font-size: 1.4rem;
+      margin-bottom: 0.55rem;
+    }
+    .form-success-title {
+      font-size: 1.35rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.2rem;
+    }
+    .form-success-desc {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .footer {
+      padding: 1.6rem 0 2.4rem;
+      border-top: 1px solid var(--line);
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .footer-copy,
+    .footer-tagline {
+      font-size: 0.82rem;
+      color: #617189;
+    }
+    .footer-tagline span { color: var(--blue); font-weight: 600; }
+
+    .floating-cta {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      z-index: 980;
+      opacity: 0;
+      transform: translateY(16px);
+      pointer-events: none;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .floating-cta.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .floating-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: #1a73e8;
+      color: #fff;
+      padding: 0.8rem 1.1rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      box-shadow: 0 16px 26px rgba(26, 115, 232, 0.34);
+      transition: transform 0.2s ease;
+    }
+    .floating-cta-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .upgrade-sticky {
+      position: fixed;
+      left: 1rem;
+      bottom: 1rem;
+      z-index: 980;
+    }
+    .upgrade-sticky a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: #1a73e8;
+      color: #fff;
+      padding: 0.8rem 1rem;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      box-shadow: 0 14px 24px rgba(26, 115, 232, 0.28);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+    .reveal-delay-4 { transition-delay: 0.32s; }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .pricing-wrap,
+      .contact-wrap {
+        grid-template-columns: 1fr;
+      }
+      .cards-4,
+      .flow,
+      .compare-ladder {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+      .faq-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      .container { width: min(1200px, calc(100% - 1.2rem)); }
+      .nav-links { display: none; }
+      .cards-4,
+      .flow,
+      .compare-ladder {
+        grid-template-columns: 1fr;
+      }
+      .case-kpis {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn-main, .btn-ghost { width: 100%; }
+      .floating-cta {
+        right: 0.7rem;
+        left: 0.7rem;
+      }
+      .floating-cta-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .upgrade-sticky {
+        left: 0.7rem;
+        right: 0.7rem;
+        bottom: 4.35rem;
+      }
+      .upgrade-sticky a {
+        width: 100%;
+        justify-content: center;
+      }
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <canvas id="smokey-fluid-cursor" aria-hidden="true"></canvas>
+
+  <div class="site-wrap">
+    <div class="bg-orb one" aria-hidden="true"></div>
+    <div class="bg-orb two" aria-hidden="true"></div>
+    <div class="bg-orb three" aria-hidden="true"></div>
+
+    <nav class="nav" id="nav">
+      <div class="container nav-inner">
+        <a href="/" class="brand">
+          <span class="brand-dot" aria-hidden="true"></span>
+          Google Ads
+        </a>
+        <div class="nav-links">
+          <a href="#services" class="nav-link active">Послуги</a>
+          <a href="#process" class="nav-link">Процес</a>
+          <a href="#pricing" class="nav-link">Ціна</a>
+          <a href="#showcase" class="nav-link">Кейси</a>
+        </div>
+        <a href="#contact" class="nav-cta" onclick="trackLead()">Запустити Starter</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero" id="hero">
+        <div class="container hero-grid">
+          <div class="reveal">
+            <span class="pill"><i></i> Google Ads під ключ</span>
+            <h1>Приводимо <span class="google-gradient">цільові ліди</span>, а не просто кліки</h1>
+            <p class="hero-sub">
+              Налаштовуємо рекламні кампанії, аналітику та оптимізацію ставок так, щоб кожен долар працював на ROI. Прозорий запуск, швидкі ітерації, масштабування без хаосу.
+            </p>
+            <div class="hero-actions">
+              <a href="#contact" class="btn-main magnetic" onclick="trackLead()">Запустити Starter →</a>
+              <a href="#pricing" class="btn-ghost">Дізнатись про пакет за $149</a>
+            </div>
+            <div class="hero-tags">
+              <span class="hero-tag">Лідогенерація</span>
+              <span class="hero-tag">Search + Performance Max</span>
+              <span class="hero-tag">GA4 + конверсії</span>
+              <span class="hero-tag">Щоденна оптимізація</span>
+            </div>
+          </div>
+
+          <aside class="hero-panel reveal reveal-delay-1" aria-label="Панель результатів">
+            <div class="panel-top">
+              <strong>Campaign Performance</strong>
+              <span class="panel-live">Live</span>
+            </div>
+            <div class="kpi-grid">
+              <div class="kpi blue">
+                <div class="label">CTR</div>
+                <div class="value">8.4%</div>
+              </div>
+              <div class="kpi red">
+                <div class="label">CPL</div>
+                <div class="value">$11.7</div>
+              </div>
+              <div class="kpi yellow">
+                <div class="label">ROAS</div>
+                <div class="value">4.6x</div>
+              </div>
+              <div class="kpi green">
+                <div class="label">Qualified Leads</div>
+                <div class="value">+219%</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="services">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>Що саме ми робимо в Google Ads</h2>
+            <p>Будуємо систему, де реклама, аналітика та креативи працюють синхронно. Без води: тільки дії, що збільшують заявки та продажі.</p>
+          </div>
+          <div class="cards-4">
+            <article class="card reveal">
+              <span class="card-icon" style="background:var(--blue)">S</span>
+              <h3>Search кампанії</h3>
+              <p>Збираємо семантику, відсікаємо сміттєвий трафік і запускаємо оголошення з фокусом на намір купівлі.</p>
+            </article>
+            <article class="card reveal reveal-delay-1">
+              <span class="card-icon" style="background:var(--red)">P</span>
+              <h3>Performance Max</h3>
+              <p>Вибудовуємо структуру asset-груп, сигнали аудиторій та стратегії ставок для масштабування.</p>
+            </article>
+            <article class="card reveal reveal-delay-2">
+              <span class="card-icon" style="background:var(--yellow);color:#1e2127">A</span>
+              <h3>Аналітика і трекінг</h3>
+              <p>Налаштовуємо GA4, події й конверсії, щоб рішення приймались на цифрах, а не на відчуттях.</p>
+            </article>
+            <article class="card reveal reveal-delay-3">
+              <span class="card-icon" style="background:var(--green)">R</span>
+              <h3>ROI-оптимізація</h3>
+              <p>Щотижня покращуємо оголошення, креативи та ставки, знижуємо CPL і піднімаємо якість ліда.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="process">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>Процес, який дає прогнозований результат</h2>
+            <p>Ви бачите чіткий план на кожному етапі: від аудиту до масштабування рекламного бюджету.</p>
+          </div>
+          <div class="flow">
+            <article class="flow-item reveal">
+              <h3>Аудит і стратегія</h3>
+              <p>Фіксуємо цілі, юніт-економіку й сильні сторони продукту. Формуємо структуру кампаній під бізнес-модель.</p>
+            </article>
+            <article class="flow-item reveal reveal-delay-1">
+              <h3>Запуск кампаній</h3>
+              <p>Готуємо оголошення, розширення, аудиторії та мінус-слова. Встановлюємо фундамент для чистого трафіку.</p>
+            </article>
+            <article class="flow-item reveal reveal-delay-2">
+              <h3>Перші оптимізації</h3>
+              <p>На основі фактичних даних прибираємо слабкі зв'язки й підсилюємо оголошення, що вже генерують заявки.</p>
+            </article>
+            <article class="flow-item reveal reveal-delay-3">
+              <h3>Масштабування</h3>
+              <p>Піднімаємо бюджети контрольовано: зберігаємо рентабельність і розширюємо потік якісних лідів.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="pricing" id="pricing">
+        <div class="container pricing-wrap reveal">
+          <div>
+            <span class="price-chip">Стартовий пакет Google Ads</span>
+            <div class="price-main">$149 <span>one-time</span></div>
+            <p>
+              Фіксована ціна запуску без прихованих платежів. Оптимальний вхід, щоб швидко перейти від «запуску» до «системного росту».
+            </p>
+            <div style="margin-top:1rem">
+              <a href="#contact" class="btn-main magnetic" onclick="trackLead()">Залишити заявку →</a>
+            </div>
+          </div>
+          <div class="price-list">
+            <div class="price-li"><i style="background:var(--blue)">✓</i> Налаштування рекламного акаунта та структури кампаній</div>
+            <div class="price-li"><i style="background:var(--red)">✓</i> Підключення аналітики й відстеження конверсій</div>
+            <div class="price-li"><i style="background:var(--yellow);color:#111">✓</i> Запуск ключових кампаній у пошуку Google</div>
+            <div class="price-li"><i style="background:var(--green)">✓</i> Базова оптимізація для стабільного CPL</div>
+            <div class="price-li"><i style="background:#5f6f8b">✓</i> Рекомендації для подальшого масштабування</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="packages-compare" id="packages">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>Порівняння пакетів Google Ads</h2>
+            <p>Єдина драбина послуг: старт з $149 і поетапний апгрейд до складніших пакетів під ріст бізнесу.</p>
+          </div>
+          <div class="compare-ladder">
+            <article class="compare-plan active reveal">
+              <span class="tag">Starter</span>
+              <h3>Base Launch</h3>
+              <b>$149</b>
+              <p>Базовий швидкий запуск реклами.</p>
+              <a href="#contact" class="plan-link" onclick="trackLead()">Обрати →</a>
+            </article>
+            <article class="compare-plan reveal">
+              <span class="tag">Growth</span>
+              <h3>Lead Engine</h3>
+              <b>$349</b>
+              <p>Стабільний потік заявок і контроль CPL.</p>
+              <a href="/landing" class="plan-link">Детальніше →</a>
+            </article>
+            <article class="compare-plan reveal">
+              <span class="tag">Scale</span>
+              <h3>Business Ads</h3>
+              <b>$650</b>
+              <p>Системне масштабування без втрати ROI.</p>
+              <a href="/business" class="plan-link">Детальніше →</a>
+            </article>
+            <article class="compare-plan reveal">
+              <span class="tag">Commerce</span>
+              <h3>E-com Suite</h3>
+              <b>$1200</b>
+              <p>Фід, PMax і прибутковий e-commerce ріст.</p>
+              <a href="/shop" class="plan-link">Детальніше →</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="showcase" id="showcase">
+        <div class="container">
+          <div class="showcase-header reveal">
+            <h2 class="showcase-title">Реальні результати<br>наших клієнтів</h2>
+            <p class="showcase-subtitle">Кожен кейс — це скріншот з Google Ads, справжні цифри і прозорий результат без прикрас.</p>
+          </div>
+
+          <div class="cases-grid">
+
+            <article class="case-card reveal">
+              <div class="case-inner">
+                <div class="case-img">
+                  <img src="/cases/bhc.png" alt="BHC — Google Ads кейс нерухомості" loading="lazy">
+                  <span class="case-niche">🏠 Нерухомість</span>
+                </div>
+                <div class="case-body">
+                  <div class="case-top-row">
+                    <div class="case-brand">
+                      <span class="case-brand-icon" style="background:var(--blue)">B</span>
+                      <span class="case-brand-name">BHC</span>
+                    </div>
+                    <div class="case-result">
+                      <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M3 8.5l3.5 3.5L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      CTR 4,4% — високий для ніші нерухомості
+                    </div>
+                  </div>
+                  <p class="case-desc">Продаж будинків. Запуск та масштабування Google Ads, генерація лідів. Стабільний потік заявок за мінімальною ціною завдяки точному підбору ключових слів і сегментації аудиторії.</p>
+                  <div class="case-kpis">
+                    <div class="case-kpi"><span class="case-kpi-val blue">789</span><span class="case-kpi-label">Конверсій</span></div>
+                    <div class="case-kpi"><span class="case-kpi-val green">&lt;$1</span><span class="case-kpi-label">Ціна / конверсію</span></div>
+                    <div class="case-kpi"><span class="case-kpi-val red">23 000</span><span class="case-kpi-label">Охоплення</span></div>
+                    <div class="case-kpi"><span class="case-kpi-val yellow">$500</span><span class="case-kpi-label">Бюджет / міс</span></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="case-card reveal">
+              <div class="case-inner">
+                <div class="case-img">
+                  <img src="/cases/vh.png" alt="VH — Google Ads кейс нерухомості" loading="lazy">
+                  <span class="case-niche">🏠 Нерухомість</span>
+                </div>
+                <div class="case-body">
+                  <div class="case-top-row">
+                    <div class="case-brand">
+                      <span class="case-brand-icon" style="background:var(--green)">V</span>
+                      <span class="case-brand-name">VH</span>
+                    </div>
+                    <div class="case-result">
+                      <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M3 8.5l3.5 3.5L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      $0,77 за конверсію при масштабному трафіку
+                    </div>
+                  </div>
+                  <p class="case-desc">Продаж будинків. Завдяки робочому креативу і правильному налаштуванню реклами отримали потужний трафік на сайт. Конверсії — дзвінки, листи, відправлені форми.</p>
+                  <div class="case-kpis">
+                    <div class="case-kpi"><span class="case-kpi-val green">888</span><span class="case-kpi-label">Конверсій</span></div>
+                    <div class="case-kpi"><span class="case-kpi-val blue">1 841</span><span class="case-kpi-label">Кліків</span></div>
+                    <div class="case-kpi"><span class="case-kpi-val red">95 808</span><span class="case-kpi-label">Показів</span></div>
+                    <div class="case-kpi"><span class="case-kpi-val yellow">$700</span><span class="case-kpi-label">Бюджет / міс</span></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="case-card reveal">
+              <div class="case-inner">
+                <div class="case-img">
+                  <img src="/cases/sr.png" alt="SR — Google Ads кейс нерухомості" loading="lazy">
+                  <span class="case-niche">🏠 Нерухомість</span>
+                </div>
+                <div class="case-body">
+                  <div class="case-top-row">
+                    <div class="case-brand">
+                      <span class="case-brand-icon" style="background:var(--red)">S</span>
+                      <span class="case-brand-name">SR</span>
+                    </div>
+                    <div class="case-result">
+                      <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M3 8.5l3.5 3.5L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      25% конверсія з кліків у заявки
+                    </div>
+                  </div>
+                  <p class="case-desc">Продаж будинків в іншій геолокації. Навіть з невеликим бюджетом — стабільний потік лідів. Ціна за конверсію низька, бо продукт дорогий і кожен лід має високу цінність.</p>
+                  <div class="case-kpis">
+                    <div class="case-kpi"><span class="case-kpi-val red">45</span><span class="case-kpi-label">Конверсій</span></div>
+                    <div class="case-kpi"><span class="case-kpi-val blue">178</span><span class="case-kpi-label">Кліків</span></div>
+                    <div class="case-kpi"><span class="case-kpi-val green">$6,45</span><span class="case-kpi-label">Ціна / конверсію</span></div>
+                    <div class="case-kpi"><span class="case-kpi-val yellow">$300</span><span class="case-kpi-label">Бюджет / міс</span></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>Питання, які закриваємо до старту</h2>
+            <p>Щоб запуск був швидким і керованим, одразу фіксуємо роль реклами в рості вашого бізнесу.</p>
+          </div>
+          <div class="faq-grid">
+            <article class="faq reveal">
+              <b>Коли будуть перші заявки?</b>
+              <p>Перші сигнали зазвичай бачимо в перші дні після запуску. Далі фокус на стабілізації CPL і якості ліда.</p>
+            </article>
+            <article class="faq reveal reveal-delay-1">
+              <b>Чи підходить це для малого бізнесу?</b>
+              <p>Так. Структура кампаній підбирається під ваш бюджет, нішу та операційну спроможність обробляти ліди.</p>
+            </article>
+            <article class="faq reveal reveal-delay-2">
+              <b>Що потрібно з вашого боку?</b>
+              <p>Короткий бриф, доступи до рекламного акаунта та сайт/лендинг. Решту процесу беремо на себе.</p>
+            </article>
+            <article class="faq reveal reveal-delay-3">
+              <b>Як контролювати ефективність?</b>
+              <p>Всі ключові метрики прозорі: витрати, CPC, CPL, конверсії. Ви бачите не кліки, а реальний результат.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact" id="contact">
+        <div class="container contact-wrap">
+          <div class="contact-box reveal">
+            <h2>Готові масштабувати заявки через Google Ads?</h2>
+            <p>
+              Залиште контакт, і ми підготуємо короткий план запуску саме під вашу нішу. Відповідь — протягом 1 години.
+            </p>
+            <div class="messengers">
+              <a id="waBtn" href="https://wa.me/380777007787" target="_blank" rel="noopener" class="messenger-btn messenger-wa">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741 .981.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                WhatsApp
+              </a>
+              <a id="tgBtn" href="https://t.me/VK_Solutions" target="_blank" rel="noopener" class="messenger-btn messenger-tg">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                Telegram
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-form reveal reveal-delay-1">
+            <form id="contactForm" onsubmit="handleSubmit(event)">
+              <input type="hidden" id="package" value="Starter $149">
+              <div class="form-group">
+                <label class="form-label" for="name">Ваше ім'я</label>
+                <input type="text" id="name" name="name" class="form-input" placeholder="Як до вас звертатися?" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="phone">Телефон або Telegram</label>
+                <input type="text" id="phone" name="phone" class="form-input" placeholder="+380 або @username" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="message">Коротко про ваш бізнес</label>
+                <textarea id="message" name="message" class="form-textarea" placeholder="Ніша, гео, бажаний результат" rows="3"></textarea>
+              </div>
+              <button type="submit" class="form-submit">Надіслати заявку →</button>
+              <p class="form-note">Фіксована ціна старту: $149</p>
+            </form>
+
+            <div class="form-success" id="formSuccess">
+              <div class="form-success-icon">✓</div>
+              <h3 class="form-success-title">Заявку отримано</h3>
+              <p class="form-success-desc">Підготуємо для вас план запуску й зв'яжемося найближчим часом.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <p class="footer-copy">© 2026 Google Ads Service</p>
+        <p class="footer-tagline">Реклама, що масштабує <span>прибуток</span></p>
+      </div>
+    </footer>
+  </div>
+
+  <div class="floating-cta" id="floatingCta">
+    <a href="#contact" class="floating-cta-btn magnetic" onclick="trackLead()">
+      Запустити Starter за $149 →
+    </a>
+  </div>
+  <div class="upgrade-sticky">
+    <a href="/landing" onclick="trackLead()">Перейти на Growth $349 →</a>
+  </div>
+
+  <script>
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
+    (function () {
+      var nav = document.getElementById('nav');
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 12) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+      }, { passive: true });
+    })();
+
+    (function () {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(function(el) {
+        observer.observe(el);
+      });
+    })();
+
+    (function () {
+      var cta = document.getElementById('floatingCta');
+      var hero = document.getElementById('hero');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) cta.classList.remove('visible');
+          else cta.classList.add('visible');
+        });
+      }, { threshold: 0.2 });
+      observer.observe(hero);
+    })();
+
+    document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+      var href = link.getAttribute('href');
+      if (!href || href.length < 2) return;
+      link.addEventListener('click', function(e) {
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    (function () {
+      var links = document.querySelectorAll('.nav-link');
+      var sections = ['services', 'process', 'pricing', 'showcase'].map(function(id){ return document.getElementById(id); });
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) return;
+          links.forEach(function(link){ link.classList.remove('active'); });
+          var active = document.querySelector('.nav-link[href="#' + entry.target.id + '"]');
+          if (active) active.classList.add('active');
+        });
+      }, { threshold: 0.35 });
+      sections.forEach(function(s){ if (s) observer.observe(s); });
+    })();
+
+    (function () {
+      var magnets = document.querySelectorAll('.magnetic');
+      magnets.forEach(function(el) {
+        el.addEventListener('mousemove', function(e) {
+          var rect = el.getBoundingClientRect();
+          var x = e.clientX - rect.left - rect.width / 2;
+          var y = e.clientY - rect.top - rect.height / 2;
+          el.style.transform = 'translate(' + (x * 0.06) + 'px,' + (y * 0.06) + 'px)';
+        });
+        el.addEventListener('mouseleave', function() {
+          el.style.transform = '';
+        });
+      });
+    })();
+
+    (function () {
+      var orbs = document.querySelectorAll('.bg-orb');
+      window.addEventListener('scroll', function() {
+        var y = window.scrollY;
+        orbs.forEach(function(orb, i) {
+          var speed = (i + 1) * 0.06;
+          orb.style.transform = 'translateY(' + (y * speed) + 'px)';
+        });
+      }, { passive: true });
+    })();
+
+    (function() {
+      var viewContentFired = false;
+      function fireViewContent() {
+        if (viewContentFired) return;
+        viewContentFired = true;
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'ViewContent', {
+            content_name: 'Google Ads Landing',
+            content_category: 'Google Ads Service',
+            value: 149,
+            currency: 'USD'
+          });
+        }
+      }
+      var scrollThreshold = window.innerHeight * 0.4;
+      function checkScroll() {
+        if (window.scrollY > scrollThreshold) {
+          fireViewContent();
+          window.removeEventListener('scroll', checkScroll);
+        }
+      }
+      window.addEventListener('scroll', checkScroll, { passive: true });
+      setTimeout(fireViewContent, 10000);
+    })();
+
+    function trackLead() {
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'Lead', {
+          content_name: 'CTA Click',
+          value: 149,
+          currency: 'USD'
+        });
+      }
+    }
+
+    function handleSubmit(e) {
+      e.preventDefault();
+
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'Contact', {
+          content_name: 'Contact Form',
+          value: 149,
+          currency: 'USD'
+        });
+      }
+
+      var form = document.getElementById('contactForm');
+      var success = document.getElementById('formSuccess');
+      var pkg = document.getElementById('package').value;
+      var data = {
+        name: document.getElementById('name').value,
+        phone: document.getElementById('phone').value,
+        message: '[' + pkg + '] ' + document.getElementById('message').value
+      };
+
+      fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).catch(function(){});
+
+      form.style.display = 'none';
+      success.classList.add('active');
+    }
+
+    fetch('/api/settings/public')
+      .then(function(r) { return r.json(); })
+      .then(function(s) {
+        if (s.pixel_id) {
+          fbq('init', s.pixel_id);
+          fbq('track', 'PageView');
+        }
+        if (s.whatsapp) {
+          document.getElementById('waBtn').href = 'https://wa.me/' + s.whatsapp;
+        }
+        if (s.telegram) {
+          document.getElementById('tgBtn').href = s.telegram;
+        }
+      })
+      .catch(function(){});
+
+    document.getElementById('waBtn').addEventListener('click', function() { trackLead(); });
+    document.getElementById('tgBtn').addEventListener('click', function() { trackLead(); });
+
+    /* ==========================================
+       SMOKE FLUID CURSOR (WebGL, all devices)
+    ========================================== */
+    (function() {
+      var isMobile = window.innerWidth <= 768;
+      var captured = {};
+
+      if (isMobile) {
+        var _origWinAdd = window.addEventListener;
+        window.addEventListener = function(type, fn, opts) {
+          if (type === 'touchstart' || type === 'touchmove' || type === 'touchend') {
+            captured[type] = captured[type] || [];
+            captured[type].push(fn);
+          }
+          return _origWinAdd.call(this, type, fn, opts);
+        };
+      }
+
+      var fs = document.createElement('script');
+      fs.src = 'https://cdn.jsdelivr.net/npm/smokey-fluid-cursor@latest/dist/index.global.js';
+      fs.onload = function() {
+        if (window.SmokyFluid) {
+          SmokyFluid.initFluid({
+            id: 'smokey-fluid-cursor',
+            simResolution: isMobile ? 64 : 128,
+            dyeResolution: isMobile ? 256 : 512,
+            densityDissipation: 0.97,
+            velocityDissipation: 0.98,
+            pressureIteration: 10,
+            curl: 30,
+            splatRadius: isMobile ? 0.15 : 0.25,
+            splatForce: isMobile ? 3000 : 6000,
+            shading: true,
+            colorUpdateSpeed: 0.5,
+            transparent: true
+          });
+        }
+
+        if (isMobile) {
+          window.addEventListener = _origWinAdd;
+
+          if (captured.touchmove) {
+            captured.touchmove.forEach(function(fn) {
+              window.removeEventListener('touchmove', fn);
+              window.addEventListener('touchmove', function(e) {
+                var orig = e.preventDefault;
+                e.preventDefault = function() {};
+                fn(e);
+                e.preventDefault = orig;
+              }, { passive: true });
+            });
+          }
+        }
+
+        var c = document.getElementById('smokey-fluid-cursor');
+        if (c) {
+          c.style.cssText = 'position:fixed!important;inset:0!important;width:100%!important;height:100%!important;pointer-events:none!important;z-index:0!important;';
+        }
+      };
+      document.body.appendChild(fs);
+    })();
+  </script>
+</body>
+</html>

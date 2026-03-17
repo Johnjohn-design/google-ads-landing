@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vivchar Solutions — Адмін-панель</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050505;
+      --bg2: #0a0a0a;
+      --bg3: #111111;
+      --card: rgba(10,10,10,0.92);
+      --border: rgba(255,255,255,0.06);
+      --accent: #CDFF00;
+      --accent-hover: #d8ff33;
+      --text: #f0f0f0;
+      --muted: rgba(255,255,255,0.45);
+      --radius: 14px;
+      --radius-sm: 8px;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    html { -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    ::selection { background: var(--accent); color: var(--bg); }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+    }
+
+    #smokey-fluid-cursor {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a { text-decoration:none; color:inherit; }
+    button { font-family:inherit; cursor:pointer; border:none; }
+    input,textarea,select { font-family:inherit; }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── STATUS COLORS ── */
+    .status-badge {
+      display: inline-block;
+      padding: 0.3rem 0.85rem;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .status-new         { background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); }
+    .status-called      { background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
+    .status-noanswer    { background: rgba(249,115,22,0.15); color: #fb923c; border: 1px solid rgba(249,115,22,0.3); }
+    .status-inprogress  { background: rgba(168,85,247,0.15); color: #c084fc; border: 1px solid rgba(168,85,247,0.3); }
+    .status-completed   { background: rgba(34,197,94,0.15);  color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
+    .status-rejected    { background: rgba(107,114,128,0.15);color: #9ca3af; border: 1px solid rgba(107,114,128,0.3); }
+
+    /* ── LOGIN SCREEN ── */
+    .login-screen {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .login-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 380px;
+      backdrop-filter: blur(20px);
+    }
+
+    .login-logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .login-logo span { color: var(--accent); }
+
+    .login-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .field { margin-bottom: 1rem; }
+
+    .field label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .field input, .field textarea, .field select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .field input:focus, .field textarea:focus, .field select:focus {
+      border-color: var(--accent);
+    }
+
+    .field input::placeholder, .field textarea::placeholder {
+      color: rgba(255,255,255,0.2);
+    }
+
+    .field select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23999' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+
+    .field select option { background: #111; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-accent {
+      background: var(--accent);
+      color: var(--bg);
+    }
+    .btn-accent:hover { box-shadow: 0 4px 20px rgba(205,255,0,0.25); background: var(--accent-hover); }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.05); }
+
+    .btn-danger {
+      background: rgba(239,68,68,0.15);
+      color: #f87171;
+      border: 1px solid rgba(239,68,68,0.3);
+    }
+
+    .btn-full { width: 100%; justify-content: center; }
+
+    .login-error {
+      color: #f87171;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      display: none;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 2rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      backdrop-filter: blur(20px);
+    }
+
+    .header-left h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .header-left p {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── STATS ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      backdrop-filter: blur(20px);
+      cursor: pointer;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .stat-card:hover, .stat-card.active {
+      border-color: rgba(205,255,0,0.3);
+      background: rgba(205,255,0,0.04);
+    }
+
+    .stat-card .num {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-card .label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+
+    /* ── FILTER TABS ── */
+    .filters {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.15); }
+
+    .filter-btn.active {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+
+    /* ── TABLE ── */
+    .table-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+    }
+
+    .table-card h3 {
+      padding: 1.25rem 1.5rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead th {
+      text-align: left;
+      padding: 0.85rem 1.25rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,0.02); }
+
+    tbody td {
+      padding: 0.85rem 1.25rem;
+      font-size: 0.9rem;
+      vertical-align: middle;
+    }
+
+    .td-date { color: var(--muted); font-size: 0.82rem; white-space: nowrap; }
+    .td-name { font-weight: 600; }
+    .td-phone { font-family: monospace; font-size: 0.85rem; }
+    .td-msg {
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .td-actions {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+    }
+
+    .btn-view {
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      background: var(--accent);
+      color: var(--bg);
+      transition: all 0.2s;
+    }
+
+    .btn-view:hover { box-shadow: 0 2px 12px rgba(205,255,0,0.3); }
+
+    .btn-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,136,204,0.15);
+      border: 1px solid rgba(0,136,204,0.3);
+      color: #38bdf8;
+      transition: all 0.2s;
+      font-size: 0.8rem;
+    }
+
+    .btn-icon:hover { background: rgba(0,136,204,0.25); }
+
+    .empty-state {
+      padding: 4rem 2rem;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 3rem 1rem;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: #0a0a0a;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 680px;
+      position: relative;
+      animation: modalIn 0.3s ease;
+    }
+
+    @keyframes modalIn {
+      from { opacity:0; transform: translateY(20px) scale(0.97); }
+      to { opacity:1; transform: translateY(0) scale(1); }
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-header h2 { font-size: 1.15rem; font-weight: 700; }
+
+    .modal-header-actions { display: flex; gap: 0.5rem; align-items: center; }
+
+    .close-btn {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 1.1rem;
+      transition: background 0.2s;
+    }
+
+    .close-btn:hover { background: rgba(255,255,255,0.1); }
+
+    .modal-body { padding: 1.5rem; }
+
+    .modal-status {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-status label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .detail-item label {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .detail-item span {
+      font-size: 0.95rem;
+      font-weight: 600;
+      word-break: break-all;
+    }
+
+    .detail-item.full { grid-column: 1 / -1; }
+
+    .comments-section h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .comment-input {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .comment-input input {
+      flex: 1;
+      padding: 0.65rem 1rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .comment-input input:focus { border-color: var(--accent); }
+
+    .comments-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-height: 250px;
+      overflow-y: auto;
+    }
+
+    .comment {
+      padding: 0.75rem 1rem;
+      background: rgba(255,255,255,0.03);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+    }
+
+    .comment-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.3rem;
+    }
+
+    .comment-author { font-weight: 700; font-size: 0.85rem; }
+    .comment-date { font-size: 0.75rem; color: var(--muted); }
+    .comment-text { font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+
+    /* ── SETTINGS VIEW ── */
+    .settings-view { display: none; }
+    .settings-view.open { display: block; }
+
+    .settings-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      backdrop-filter: blur(20px);
+    }
+
+    .settings-card h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .settings-card .sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .settings-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .settings-section h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .settings-section .hint {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .settings-section .note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.35rem;
+    }
+
+    .file-upload {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .file-upload label.btn {
+      cursor: pointer;
+    }
+
+    .file-upload input[type=file] { display: none; }
+
+    .file-upload .filename {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .settings-instructions {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .settings-instructions h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .settings-instructions p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+      line-height: 1.5;
+    }
+
+    .settings-instructions strong { color: var(--text); }
+
+    .settings-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      padding: 0.85rem 1.5rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 600;
+      z-index: 2000;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast-success { background: #166534; color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
+    .toast-error { background: #7f1d1d; color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+
+    /* ── APP WRAPPER ── */
+    .app { display: none; padding: 1.5rem 0 3rem; }
+    .dashboard-view {}
+    .dashboard-view.hidden { display: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .stats-row { grid-template-columns: repeat(3, 1fr); }
+      .detail-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .header { flex-direction: column; align-items: flex-start; }
+      .modal { margin: 1rem; }
+      .modal-overlay { padding: 1rem; align-items: flex-start; }
+      .settings-card { padding: 1.25rem; }
+    }
+
+    @media (max-width: 480px) {
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .header-actions { width: 100%; }
+      .header-actions .btn { flex: 1; justify-content: center; font-size: 0.78rem; padding: 0.6rem 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <canvas id="smokey-fluid-cursor" aria-hidden="true"></canvas>
+
+  <!-- ══════ LOGIN ══════ -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <div class="login-logo">Vivchar <span>Solutions</span></div>
+      <p class="login-sub">Адмін-панель</p>
+      <p class="login-error" id="loginError">Невірний логін або пароль</p>
+      <form onsubmit="login(event)">
+        <div class="field">
+          <label>Логін</label>
+          <input type="text" id="loginUser" placeholder="admin" required autocomplete="username">
+        </div>
+        <div class="field">
+          <label>Пароль</label>
+          <input type="password" id="loginPass" placeholder="••••••" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-accent btn-full" style="margin-top:0.5rem">Увійти →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ══════ APP ══════ -->
+  <div class="app" id="app">
+    <div class="container">
+
+      <!-- HEADER -->
+      <header class="header">
+        <div class="header-left">
+          <h1>Адмін-панель</h1>
+          <p>Вітаємо, <span id="adminName">Admin</span></p>
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-accent" onclick="openCreateModal()">+ Створити</button>
+          <button class="btn btn-outline" onclick="showSettings()">Налаштування</button>
+          <button class="btn btn-outline" onclick="logout()">Вийти</button>
+        </div>
+      </header>
+
+      <!-- ══════ DASHBOARD VIEW ══════ -->
+      <div class="dashboard-view" id="dashboardView">
+
+        <!-- STATS -->
+        <div class="stats-row" id="statsRow"></div>
+
+        <!-- FILTERS -->
+        <div class="filters" id="filtersRow"></div>
+
+        <!-- TABLE -->
+        <div class="table-card">
+          <h3>Заявки</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Дата</th>
+                  <th>Ім'я</th>
+                  <th>Телефон</th>
+                  <th>Повідомлення</th>
+                  <th>Джерело</th>
+                  <th>Статус</th>
+                  <th>Дії</th>
+                </tr>
+              </thead>
+              <tbody id="leadsBody"></tbody>
+            </table>
+          </div>
+          <div class="empty-state" id="emptyState" style="display:none">Заявок поки немає</div>
+        </div>
+      </div>
+
+      <!-- ══════ SETTINGS VIEW ══════ -->
+      <div class="settings-view" id="settingsView">
+        <div class="settings-card">
+          <div class="settings-header">
+            <div>
+              <h2>Налаштування</h2>
+              <p class="sub">Налаштування Facebook Pixel та контактів</p>
+            </div>
+            <button class="btn btn-outline" onclick="showDashboard()">Назад</button>
+          </div>
+
+          <form onsubmit="saveSettings(event)">
+            <div class="settings-section">
+              <h3>Facebook Pixel ID</h3>
+              <p class="hint">Введіть ваш Facebook Pixel ID для відстеження конверсій</p>
+              <div class="field"><input type="text" id="setPixelId" placeholder="745435525028872"></div>
+              <p class="note">Знайти можна в Meta Business Manager → Events Manager</p>
+            </div>
+
+            <div class="settings-section">
+              <h3>Facebook Conversions API Access Token</h3>
+              <p class="hint">Введіть Access Token для Conversions API (серверне відстеження)</p>
+              <div class="field"><input type="text" id="setCapiToken" placeholder="EAAxxxxxxx..."></div>
+              <p class="note">Events Manager → Settings → Conversions API → Generate Access Token</p>
+            </div>
+
+            <div class="settings-section">
+              <h3>Номер WhatsApp</h3>
+              <p class="hint">Введіть номер телефону в міжнародному форматі (без +)</p>
+              <div class="field"><input type="text" id="setWhatsapp" placeholder="380950057581"></div>
+              <p class="note">Приклад: 380991234567 (без +)</p>
+            </div>
+
+            <div class="settings-section">
+              <h3>Посилання на Telegram</h3>
+              <p class="hint">Поточне посилання (змінити можна тут)</p>
+              <div class="field"><input type="text" id="setTelegram" placeholder="https://t.me/username"></div>
+            </div>
+
+            <div class="settings-section">
+              <h3>Favicon (Іконка сайту)</h3>
+              <p class="hint">Завантажте зображення для favicon (.png, .ico, 32×32px або більше)</p>
+              <div class="file-upload">
+                <label class="btn btn-accent" for="faviconFile">Обрати файл</label>
+                <input type="file" id="faviconFile" accept=".png,.ico,.jpg,.svg" onchange="uploadFavicon(this)">
+                <span class="filename" id="faviconName">файл не вибрано</span>
+              </div>
+              <p class="note">Рекомендований розмір: 32×32px або 64×64px. Формат: PNG або ICO</p>
+            </div>
+
+            <button type="submit" class="btn btn-accent btn-full" style="margin-top:1.5rem;padding:0.85rem">
+              Зберегти налаштування
+            </button>
+          </form>
+
+          <div class="settings-instructions">
+            <h3>Інструкції</h3>
+            <p><strong>Facebook Pixel:</strong> Після збереження ID, перезапустіть сервер щоб зміни набули чинності.</p>
+            <p><strong>WhatsApp:</strong> Номер використовується для кнопки "Написати в WhatsApp" на сайті.</p>
+            <p><strong>Telegram:</strong> Посилання використовується для всіх кнопок Telegram.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════ LEAD DETAIL MODAL ══════ -->
+  <div class="modal-overlay" id="leadModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Деталі заявки</h2>
+        <div class="modal-header-actions">
+          <button class="btn btn-danger" id="deleteLeadBtn" onclick="deleteLead()">Видалити</button>
+          <button class="close-btn" onclick="closeModal()">✕</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-status">
+          <label>Статус заявки</label>
+          <select id="modalStatus" onchange="changeStatus()">
+            <option>Новий</option>
+            <option>Додзвонилися</option>
+            <option>Не відповідає</option>
+            <option>В роботі</option>
+            <option>Завершено</option>
+            <option>Відхилено</option>
+          </select>
+        </div>
+
+        <div class="detail-grid" id="detailGrid"></div>
+
+        <div class="comments-section">
+          <h4>Коментарі</h4>
+          <div class="comment-input">
+            <input type="text" id="commentInput" placeholder="Додати коментар..." onkeydown="if(event.key==='Enter')addComment()">
+            <button class="btn btn-accent" onclick="addComment()">Додати</button>
+          </div>
+          <div class="comments-list" id="commentsList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════ CREATE LEAD MODAL ══════ -->
+  <div class="modal-overlay" id="createModal">
+    <div class="modal" style="max-width:480px">
+      <div class="modal-header">
+        <h2>Нова заявка</h2>
+        <button class="close-btn" onclick="closeCreateModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="createLead(event)">
+          <div class="field">
+            <label>Ім'я</label>
+            <input type="text" id="createName" placeholder="Ім'я клієнта" required>
+          </div>
+          <div class="field">
+            <label>Телефон / Telegram</label>
+            <input type="text" id="createPhone" placeholder="+380 або @username" required>
+          </div>
+          <div class="field">
+            <label>Повідомлення</label>
+            <textarea id="createMsg" rows="3" placeholder="Деталі..."></textarea>
+          </div>
+          <div class="field">
+            <label>Джерело</label>
+            <select id="createSource">
+              <option>Вручну</option>
+              <option>Телефон</option>
+              <option>Telegram</option>
+              <option>WhatsApp</option>
+              <option>Instagram</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-accent btn-full" style="margin-top:0.5rem">Створити заявку</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const API = '';
+    let token = localStorage.getItem('vk_token');
+    let leads = [];
+    let currentFilter = 'all';
+    let currentLead = null;
+
+    const STATUSES = ['Новий','Додзвонилися','Не відповідає','В роботі','Завершено','Відхилено'];
+    const STATUS_MAP = {
+      'Новий': 'new', 'Додзвонилися': 'called', 'Не відповідає': 'noanswer',
+      'В роботі': 'inprogress', 'Завершено': 'completed', 'Відхилено': 'rejected'
+    };
+
+    // ── AUTH ──
+    async function checkAuth() {
+      if (!token) return showLogin();
+      try {
+        const r = await apiFetch('/api/auth/check');
+        document.getElementById('adminName').textContent = r.username;
+        showApp();
+        loadLeads();
+      } catch { showLogin(); }
+    }
+
+    function showLogin() {
+      document.getElementById('loginScreen').style.display = 'flex';
+      document.getElementById('app').style.display = 'none';
+    }
+
+    function showApp() {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+    }
+
+    async function login(e) {
+      e.preventDefault();
+      const username = document.getElementById('loginUser').value;
+      const password = document.getElementById('loginPass').value;
+      try {
+        const r = await fetch(API + '/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        if (!r.ok) throw new Error();
+        const data = await r.json();
+        token = data.token;
+        localStorage.setItem('vk_token', token);
+        document.getElementById('loginError').style.display = 'none';
+        showApp();
+        loadLeads();
+      } catch {
+        document.getElementById('loginError').style.display = 'block';
+      }
+    }
+
+    async function logout() {
+      try { await apiFetch('/api/auth/logout', 'POST'); } catch {}
+      token = null;
+      localStorage.removeItem('vk_token');
+      showLogin();
+    }
+
+    async function apiFetch(url, method = 'GET', body = null) {
+      const opts = {
+        method,
+        headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' }
+      };
+      if (body) opts.body = JSON.stringify(body);
+      const r = await fetch(API + url, opts);
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    }
+
+    // ── LEADS ──
+    async function loadLeads() {
+      try {
+        leads = await apiFetch('/api/leads');
+        renderStats();
+        renderFilters();
+        renderTable();
+      } catch (e) {
+        console.error('Failed to load leads:', e);
+      }
+    }
+
+    function renderStats() {
+      const counts = { all: leads.length };
+      STATUSES.forEach(s => { counts[s] = leads.filter(l => l.status === s).length; });
+
+      const statLabels = {
+        all: 'Всього заявок', 'Новий': 'Нові', 'Додзвонилися': 'Додзвонилися',
+        'Не відповідає': 'Не відповідає', 'В роботі': 'В роботі', 'Завершено': 'Завершені'
+      };
+
+      const keys = ['all', 'Новий', 'Додзвонилися', 'Не відповідає', 'В роботі', 'Завершено'];
+      const html = keys.map(k => `
+        <div class="stat-card ${currentFilter === k ? 'active' : ''}" onclick="setFilter('${k}')">
+          <div class="num">${counts[k] || 0}</div>
+          <div class="label">${statLabels[k]}</div>
+        </div>
+      `).join('');
+
+      document.getElementById('statsRow').innerHTML = html;
+    }
+
+    function renderFilters() {
+      const all = ['all', ...STATUSES];
+      const labels = { all: 'Всі', 'Новий': 'Новий', 'Додзвонилися': 'Додзвонилися',
+        'Не відповідає': 'Не відповідає', 'В роботі': 'В роботі', 'Завершено': 'Завершено', 'Відхилено': 'Відхилено'
+      };
+      const html = all.map(s =>
+        `<button class="filter-btn ${currentFilter === s ? 'active' : ''}" onclick="setFilter('${s}')">${labels[s]}</button>`
+      ).join('');
+      document.getElementById('filtersRow').innerHTML = html;
+    }
+
+    function setFilter(f) {
+      currentFilter = f;
+      renderStats();
+      renderFilters();
+      renderTable();
+    }
+
+    function renderTable() {
+      const filtered = currentFilter === 'all' ? leads : leads.filter(l => l.status === currentFilter);
+      const tbody = document.getElementById('leadsBody');
+      const empty = document.getElementById('emptyState');
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+      }
+
+      empty.style.display = 'none';
+      tbody.innerHTML = filtered.map(l => {
+        const cls = STATUS_MAP[l.status] || 'new';
+        const date = formatDate(l.created_at);
+        const phone = escHtml(l.phone || '');
+        const tgLink = phone.startsWith('@')
+          ? `<a href="https://t.me/${phone.slice(1)}" target="_blank" class="btn-icon" title="Telegram">✈</a>`
+          : (phone.match(/^\+?\d{10,}$/)
+            ? `<a href="https://t.me/${phone.replace(/\D/g,'')}" target="_blank" class="btn-icon" title="Telegram">✈</a>`
+            : '');
+
+        return `<tr>
+          <td class="td-date">${date}</td>
+          <td class="td-name">${escHtml(l.name)}</td>
+          <td class="td-phone">${phone}</td>
+          <td class="td-msg" title="${escHtml(l.message || '')}">${escHtml(l.message || '—')}</td>
+          <td style="font-size:0.82rem;color:var(--muted)">${escHtml(l.source || 'Сайт')}</td>
+          <td><span class="status-badge status-${cls}">${escHtml(l.status)}</span></td>
+          <td><div class="td-actions">
+            <button class="btn-view" onclick="viewLead(${l.id})">Переглянути</button>
+            ${tgLink}
+          </div></td>
+        </tr>`;
+      }).join('');
+    }
+
+    // ── VIEW LEAD ──
+    async function viewLead(id) {
+      try {
+        currentLead = await apiFetch('/api/leads/' + id);
+        const m = document.getElementById('leadModal');
+        m.classList.add('open');
+
+        document.getElementById('modalStatus').value = currentLead.status;
+
+        const g = document.getElementById('detailGrid');
+        g.innerHTML = `
+          <div class="detail-item"><label>Ім'я</label><span>${escHtml(currentLead.name)}</span></div>
+          <div class="detail-item"><label>Телефон</label><span>${escHtml(currentLead.phone)}</span></div>
+          <div class="detail-item"><label>Джерело</label><span>${escHtml(currentLead.source || 'Сайт')}</span></div>
+          <div class="detail-item"><label>Дата</label><span>${formatDate(currentLead.created_at)}</span></div>
+          <div class="detail-item full"><label>Повідомлення</label><span>${escHtml(currentLead.message || '—')}</span></div>
+        `;
+
+        renderComments(currentLead.comments || []);
+      } catch (e) {
+        toast('Помилка завантаження', 'error');
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('leadModal').classList.remove('open');
+      currentLead = null;
+    }
+
+    async function changeStatus() {
+      if (!currentLead) return;
+      const status = document.getElementById('modalStatus').value;
+      try {
+        await apiFetch('/api/leads/' + currentLead.id, 'PUT', { status });
+        currentLead.status = status;
+        loadLeads();
+        toast('Статус оновлено');
+      } catch { toast('Помилка', 'error'); }
+    }
+
+    async function deleteLead() {
+      if (!currentLead) return;
+      if (!confirm('Видалити цю заявку?')) return;
+      try {
+        await apiFetch('/api/leads/' + currentLead.id, 'DELETE');
+        closeModal();
+        loadLeads();
+        toast('Заявку видалено');
+      } catch { toast('Помилка', 'error'); }
+    }
+
+    // ── COMMENTS ──
+    function renderComments(comments) {
+      const list = document.getElementById('commentsList');
+      if (comments.length === 0) {
+        list.innerHTML = '<p style="color:var(--muted);font-size:0.85rem">Коментарів поки немає</p>';
+        return;
+      }
+      list.innerHTML = comments.map(c => `
+        <div class="comment">
+          <div class="comment-meta">
+            <span class="comment-author">${escHtml(c.author)}</span>
+            <span class="comment-date">${formatDate(c.created_at)}</span>
+          </div>
+          <div class="comment-text">${escHtml(c.text)}</div>
+        </div>
+      `).join('');
+      list.scrollTop = list.scrollHeight;
+    }
+
+    async function addComment() {
+      if (!currentLead) return;
+      const input = document.getElementById('commentInput');
+      const text = input.value.trim();
+      if (!text) return;
+      try {
+        await apiFetch('/api/leads/' + currentLead.id + '/comments', 'POST', { text });
+        input.value = '';
+        const updated = await apiFetch('/api/leads/' + currentLead.id);
+        renderComments(updated.comments || []);
+      } catch { toast('Помилка', 'error'); }
+    }
+
+    // ── CREATE LEAD ──
+    function openCreateModal() {
+      document.getElementById('createModal').classList.add('open');
+    }
+
+    function closeCreateModal() {
+      document.getElementById('createModal').classList.remove('open');
+    }
+
+    async function createLead(e) {
+      e.preventDefault();
+      const data = {
+        name: document.getElementById('createName').value,
+        phone: document.getElementById('createPhone').value,
+        message: document.getElementById('createMsg').value,
+        source: document.getElementById('createSource').value,
+      };
+      try {
+        await apiFetch('/api/leads/manual', 'POST', data);
+        closeCreateModal();
+        document.getElementById('createName').value = '';
+        document.getElementById('createPhone').value = '';
+        document.getElementById('createMsg').value = '';
+        loadLeads();
+        toast('Заявку створено');
+      } catch { toast('Помилка', 'error'); }
+    }
+
+    // ── SETTINGS ──
+    function showSettings() {
+      document.getElementById('dashboardView').classList.add('hidden');
+      document.getElementById('settingsView').classList.add('open');
+      loadSettings();
+    }
+
+    function showDashboard() {
+      document.getElementById('settingsView').classList.remove('open');
+      document.getElementById('dashboardView').classList.remove('hidden');
+    }
+
+    async function loadSettings() {
+      try {
+        const s = await apiFetch('/api/settings');
+        document.getElementById('setPixelId').value = s.pixel_id || '';
+        document.getElementById('setCapiToken').value = s.capi_token || '';
+        document.getElementById('setWhatsapp').value = s.whatsapp || '';
+        document.getElementById('setTelegram').value = s.telegram || '';
+      } catch {}
+    }
+
+    async function saveSettings(e) {
+      e.preventDefault();
+      const data = {
+        pixel_id: document.getElementById('setPixelId').value,
+        capi_token: document.getElementById('setCapiToken').value,
+        whatsapp: document.getElementById('setWhatsapp').value,
+        telegram: document.getElementById('setTelegram').value,
+      };
+      try {
+        await apiFetch('/api/settings', 'PUT', data);
+        toast('Налаштування збережено');
+      } catch { toast('Помилка збереження', 'error'); }
+    }
+
+    async function uploadFavicon(input) {
+      const file = input.files[0];
+      if (!file) return;
+      document.getElementById('faviconName').textContent = file.name;
+      const fd = new FormData();
+      fd.append('favicon', file);
+      try {
+        const r = await fetch(API + '/api/settings/favicon', {
+          method: 'POST',
+          headers: { 'Authorization': 'Bearer ' + token },
+          body: fd
+        });
+        if (!r.ok) throw new Error();
+        toast('Favicon завантажено');
+      } catch { toast('Помилка завантаження', 'error'); }
+    }
+
+    // ── HELPERS ──
+    function escHtml(str) {
+      const d = document.createElement('div');
+      d.textContent = str;
+      return d.innerHTML;
+    }
+
+    function formatDate(str) {
+      if (!str) return '—';
+      const d = new Date(str.replace(' ', 'T'));
+      if (isNaN(d)) return str;
+      return d.toLocaleDateString('uk-UA', { day: '2-digit', month: '2-digit', year: 'numeric' })
+        + ', ' + d.toLocaleTimeString('uk-UA', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function toast(msg, type = 'success') {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = 'toast toast-' + type + ' show';
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    // Close modals on overlay click
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', e => {
+        if (e.target === overlay) {
+          overlay.classList.remove('open');
+          currentLead = null;
+        }
+      });
+    });
+
+    // ── INIT ──
+    checkAuth();
+
+    // ── SMOKE FLUID CURSOR ──
+    (function() {
+      var isMobile = window.innerWidth <= 768;
+      var _origWinAdd;
+
+      if (isMobile) {
+        _origWinAdd = window.addEventListener;
+        window.addEventListener = function(type, fn, opts) {
+          if (type === 'touchstart' || type === 'touchmove' || type === 'touchend') {
+            return _origWinAdd.call(this, type, fn, { passive: true });
+          }
+          return _origWinAdd.call(this, type, fn, opts);
+        };
+      }
+
+      var fs = document.createElement('script');
+      fs.src = 'https://cdn.jsdelivr.net/npm/smokey-fluid-cursor@latest/dist/index.global.js';
+      fs.onload = function() {
+        if (window.SmokyFluid) {
+          SmokyFluid.initFluid({
+            id: 'smokey-fluid-cursor',
+            simResolution: isMobile ? 64 : 128,
+            dyeResolution: isMobile ? 256 : 512,
+            densityDissipation: 0.97,
+            velocityDissipation: 0.98,
+            pressureIteration: 10,
+            curl: 30,
+            splatRadius: isMobile ? 0.15 : 0.25,
+            splatForce: isMobile ? 3000 : 6000,
+            shading: true,
+            colorUpdateSpeed: 0.5,
+            transparent: true
+          });
+        }
+
+        if (isMobile && _origWinAdd) {
+          window.addEventListener = _origWinAdd;
+        }
+
+        var c = document.getElementById('smokey-fluid-cursor');
+        if (c) {
+          c.style.cssText = 'position:fixed!important;inset:0!important;width:100%!important;height:100%!important;pointer-events:none!important;z-index:0!important;';
+        }
+      };
+      document.body.appendChild(fs);
+    })();
+  </script>
+</body>
+</html>
